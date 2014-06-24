@@ -9,6 +9,7 @@ public class GameScreen extends AbstractScreen { // Pantalla principal del juego
 	private SpriteBatch batch; // "Grupo de Sprites (imagenes)" nos permite dibujar rectagulos como referencias a texturas, es necesario para mostrar todo por pantalla.
 	private Texture texture; // Una Texture es una clase que envuelve una textura estandar de OpenGL, se utiliza para imagenes simples
 	private Paddle Lpaddle, Rpaddle; // Nos creamos las nuevas palas
+	private Ball ball; // La pelota del pong
 	
 	public GameScreen(Main main) {
 		super(main);
@@ -18,9 +19,11 @@ public class GameScreen extends AbstractScreen { // Pantalla principal del juego
 	public void show() { // Método que se llama cuando se establece esta pantalla como actual
 		batch = new SpriteBatch();
 		texture = new Texture(Gdx.files.internal("pongcampo.png"));
+		Texture textureBola = new Texture(Gdx.files.internal("bola.png")); // Cogemos la textura para calcular el alto y ancho de la bola y centrarla en la pantalla
+		ball = new Ball(Gdx.graphics.getWidth() / 2 - textureBola.getWidth() / 2, Gdx.graphics.getHeight() / 2 - textureBola.getHeight() / 2);
 		Texture texturePala = new Texture(Gdx.files.internal("pala.png")); // Cogemos la textura para calcular el alto de la pala y centrarla en la pantalla
 		Lpaddle = new LeftPaddle(80, Gdx.graphics.getHeight() / 2 - texturePala.getHeight() / 2);
-		Rpaddle = new RightPaddle(Gdx.graphics.getWidth() - 100, Gdx.graphics.getHeight() / 2 - texturePala.getHeight() / 2);
+		Rpaddle = new RightPaddle(Gdx.graphics.getWidth() - 100, Gdx.graphics.getHeight() / 2 - texturePala.getHeight() / 2, ball);
 	}
 	
 	@Override
@@ -32,9 +35,12 @@ public class GameScreen extends AbstractScreen { // Pantalla principal del juego
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); // Despues de la funcion anterior es necesario ejecutar esta, para que se lleve a cabo
 		
 		Lpaddle.update(); // Método que permitirá actualizar los valores de la pala, así como detectar si estamos pulsando el botón adecuado para para moverla.
+		Rpaddle.update(); // Actualizamos los valores de la pala derecha, para que se mueva en la pantalla.
+		ball.update(Lpaddle, Rpaddle); // Permite que la bola se mueva, y al pasarle las dos palas podemos detectar la colisión con ellas.
 		
 		batch.begin(); // Aqui se comienza a dibujar
 		batch.draw(texture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight()); // Pintamos el fondo de pantalla
+		ball.draw(batch); // Pintamos la bola
 		Lpaddle.draw(batch); // Pintamos pala izquierda
 		Rpaddle.draw(batch); // Pintamos pala derecha
 		batch.end(); // Se termina de dibujar

@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
 public abstract class Paddle { // Clase abstracta que modelará las partes comunes de las dos palas que tendremos en la pantalla
+	public static final float SPEED = 400;
+	
 	protected Texture texture;
 	protected Rectangle bordes; // Objeto que nos determinará la posición de la pala y permite detectar colisiones con otros rectangulos.
 	
@@ -22,5 +24,12 @@ public abstract class Paddle { // Clase abstracta que modelará las partes comun
 
 	public Rectangle getBordes() { // Observador del rectangulo.
 		return bordes;
+	}
+	
+	protected boolean choqueArriba() { // Método que detecta si la pala se ha chocado con el borde de arriba
+		return bordes.y + texture.getHeight() >= Gdx.graphics.getHeight();
+	}
+	protected boolean choqueAbajo() { // Método que detecta si la pala se ha chocado con el borde de abajo
+		return bordes.y <= 0;
 	}
 }

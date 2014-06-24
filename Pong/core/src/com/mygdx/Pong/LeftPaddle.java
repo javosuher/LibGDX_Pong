@@ -5,7 +5,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 
 public class LeftPaddle extends Paddle { // Pala izquierda del juego
-	public static final float SPEED = 400;
 
 	public LeftPaddle(float x, float y) {
 		super(x, y);
@@ -54,12 +53,5 @@ public class LeftPaddle extends Paddle { // Pala izquierda del juego
 					bordes.y = bordes.y + SPEED * delta; // Hacemos que se mueva hacia arriba
 			}
 		}
-	}
-	
-	private boolean choqueArriba() { // Método que detecta si la pala se ha chocado con el borde de arriba
-		return bordes.y + texture.getHeight() >= Gdx.graphics.getHeight();
-	}
-	private boolean choqueAbajo() { // Método que detecta si la pala se ha chocado con el borde de abajo
-		return bordes.y <= 0;
 	}
 }
