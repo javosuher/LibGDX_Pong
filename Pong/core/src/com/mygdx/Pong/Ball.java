@@ -34,8 +34,6 @@ public class Ball { // Esta clase representa la bola del pong
 		
 		bordes.x = bordes.x + SPEED * delta * direccionX; 
 		bordes.y = bordes.y + SPEED * delta * direccionY;
-		
-		comprobarPosicionBola();
 	}
 	
 	private boolean choqueConParedes() { // Método que permite detectar si se choca arriba o abajo de la pantalla y ajusta la posición de la bola
@@ -61,7 +59,7 @@ public class Ball { // Esta clase representa la bola del pong
 		else return false;
 	}
 	
-	private void comprobarPosicionBola() { // Método que pone la bola en el centro si se sale de la pantalla por la izquierda o la derecha
+	public void comprobarPosicionBola() { // Método que pone la bola en el centro si se sale de la pantalla por la izquierda o la derecha
 		if(bordes.x < 0 || bordes.x > Gdx.graphics.getWidth()) {
 			bordes.x = posicionOriginalX;
 			bordes.y = posicionOriginalY;

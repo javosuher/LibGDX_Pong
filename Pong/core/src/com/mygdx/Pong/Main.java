@@ -19,4 +19,9 @@ public class Main extends Game {
 		GAMESCREEN = new GameScreen(this);
 		setScreen(GAMESCREEN); // Establecemos GAMESCREEN como nuestra pantalla principal
 	}
+	
+	@Override
+	public void dispose() { // Método para eliminar recursos.
+		GAMESCREEN.dispose();
+	}
 }
