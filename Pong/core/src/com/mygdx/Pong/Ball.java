@@ -1,6 +1,7 @@
 package com.mygdx.Pong;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -12,6 +13,7 @@ public class Ball { // Esta clase representa la bola del pong
 	private Rectangle bordes; // Objeto que nos determinará la posición de la bola y permite detectar colisiones con otros rectangulos.
 	private int direccionX, direccionY; // Permite invertir la dirección de la bola en el eje x e y respectivamente
 	private float posicionOriginalX, posicionOriginalY; // Guarda la posición original de la bola cuando esta se crea.
+	private Sound sonido; // Sonido cuando colisiona con las palas
 	
 	public Ball(float x, float y) {
 		texture = new Texture(Gdx.files.internal("bola.png"));
@@ -19,6 +21,7 @@ public class Ball { // Esta clase representa la bola del pong
 		direccionX = direccionY = 1; // Lo ponemos a 1 los dos para que se mueva al inicio hacia arriba a la derecha
 		posicionOriginalX = x;
 		posicionOriginalY = y;
+		sonido = Gdx.audio.newSound(Gdx.files.internal("golpe.ogg"));
 	}
 	
 	public void draw(SpriteBatch batch) { // Permite dibujar la bola para que la visualice el usuario.
@@ -29,8 +32,10 @@ public class Ball { // Esta clase representa la bola del pong
 		float delta = Gdx.graphics.getDeltaTime(); // Número de segundos desde el anterior fotograma.
 		if(choqueConParedes())
 			direccionY = direccionY * -1; // Cambiamos la dirección en el eje y
-		if(choqueConPalas(Lpaddle.getBordes(), Rpaddle.getBordes()))
+		if(choqueConPalas(Lpaddle.getBordes(), Rpaddle.getBordes())) {
 			direccionX = direccionX * -1; // Cambiamos la dirección en el eje x
+			sonido.play(); // Reproducimos el sonido
+		}
 		
 		bordes.x = bordes.x + SPEED * delta * direccionX; 
 		bordes.y = bordes.y + SPEED * delta * direccionY;

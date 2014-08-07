@@ -1,6 +1,8 @@
 package com.mygdx.Pong;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /*AplicationListener es una interfaz que proporciona metodos que se llaman cada vez que es necesario
 * crear, pausar, continuar, renderizar o destruir una aplicacion, nos permite ademas manejar los graficos
@@ -12,16 +14,25 @@ import com.badlogic.gdx.Game;
 
 // Main es la clase principal de nuestro juego, es decir, es la primera que se llama cuando se ejecuta.
 public class Main extends Game {
-	public AbstractScreen GAMESCREEN; // Pantalla principal del juego
+	private SpriteBatch batch; // "Grupo de Sprites (imagenes)" nos permite dibujar rectagulos como referencias a texturas, es necesario para mostrar todo por pantalla.
 
 	@Override
 	public void create () { // Método que se llama cuando se ejecuta el juego
-		GAMESCREEN = new GameScreen(this);
-		setScreen(GAMESCREEN); // Establecemos GAMESCREEN como nuestra pantalla principal
+		batch = new SpriteBatch();
+		Gdx.input.setCatchBackKey(true); // Bloquea el boton "Back" de android para que se tenga que salir del juego usando el boton "Exit"
+		Screens.juego = this;
+		Screens.GAMESCREEN = new GameScreen(this); // Se inicializan las pantallas
+		Screens.MAINSCREEN = new MainScreen(this);
+		setScreen(Screens.MAINSCREEN); // Establecemos MAINSCREEN como nuestra pantalla principal
 	}
 	
 	@Override
 	public void dispose() { // Método para eliminar recursos.
-		GAMESCREEN.dispose();
+		batch.dispose();
+		Screens.GAMESCREEN.dispose();
+	}
+	
+	public SpriteBatch getBatch() {
+		return batch;
 	}
 }
