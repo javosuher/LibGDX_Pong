@@ -11,5 +11,7 @@ Aqui se recogen los retos que se le están añadiendo al pong, con su respectivo
   * [Reto 4: Marcador de puntos.](https://github.com/javosuher/LibGDX_Pong/commit/aa3e8e0e653a48bb8ce5e811e879633facc12eb5)
   * [Reto 5: Menú del juego.](https://github.com/javosuher/LibGDX_Pong/commit/efc2934ec44ad1ed30baa958dc208de701fa97fc)
  
+![logo](https://talleradvuca.files.wordpress.com/2014/08/ponglibgdx.png)
+
 ##Agradecimientos
 Financiado por la Actuación Avalada EL DESARROLLO DE VIDEOJUEGOS COMO REFUERZO DE CONOCIMIENTOS DE  PROGRAMACIÓN: UNA EXPERIENCIA CON TECNOLOGÍAS MÓVILES (código AAA_14_024) de la convocatoria 2013/14 de la Universidad de Cádiz
