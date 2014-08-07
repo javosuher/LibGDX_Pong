@@ -2,7 +2,7 @@
 
 Clásico pong que se va desarrollando poco a poco mediante una serie de retos cuya solución se va subiendo a [youtube](http://www.youtube.com/playlist?list=PLHRkSlJf3kRi0R142Wy9O430ncrHaUoPP), para que cualquier persona pueda aprender fácilmente a desarrollar videojuegos con libGDX.
 
-##Retos
+##Retos (Finalizado)
 Aqui se recogen los retos que se le están añadiendo al pong, con su respectivo video asociado. En este [documento](https://docs.google.com/document/d/1jmSRqljnnv4S2Xy30GtOSNijQztVTG7ts30G6z4qGOU/edit?usp=sharing) se puede ver mas detallado en que consiste cada uno.
 
   * [Reto 1: Fondo de pantalla.](https://github.com/javosuher/LibGDX_Pong/commit/b7067f376392aef82f7dca3e8c0e05db936e3fa7)
